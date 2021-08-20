@@ -114,6 +114,8 @@ public class CoolBlackjackGame extends BlackJackGame
 						output.append(".\n");
 					}
 				}
+
+				default -> output.append("you try and fail to cheat again!\n");
 			}
 
 			player.setAbility("");

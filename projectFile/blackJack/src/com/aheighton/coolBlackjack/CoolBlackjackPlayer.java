@@ -5,7 +5,7 @@ import com.aheighton.blackjack.*;
 
 public class CoolBlackjackPlayer extends BlackJackPlayer
 {
-	private static final String[] CHEATS = {"Free ace","Ditch last card","See other hands"};
+	public static final String[] CHEATS = {"Free ace","Ditch last card","See other hands"};
 	private String ability;
 
 	public CoolBlackjackPlayer(String name, boolean isCPU, boolean isDealer)
