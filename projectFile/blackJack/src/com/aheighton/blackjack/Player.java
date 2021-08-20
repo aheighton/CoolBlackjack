@@ -48,4 +48,10 @@ public abstract class Player
 	}
 
 	public abstract void hit(Card card);
+
+	public abstract void newAbility();
+
+	public abstract String getAbility();
+
+	public abstract void setAbility(String s);
 }
