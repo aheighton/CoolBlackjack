@@ -14,4 +14,22 @@ public class BlackJackPlayer extends Player
 	{
 		getHand().addCard(card);
 	}
+
+	@Override
+	public void newAbility()
+	{
+
+	}
+
+	@Override
+	public String getAbility()
+	{
+		return null;
+	}
+
+	@Override
+	public void setAbility(String s)
+	{
+
+	}
 }
