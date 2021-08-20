@@ -41,6 +41,7 @@ public class Card
 
 	public int getPoints()
 	{
+		//TODO: how to handle aces?
 		try
 		{
 			return parseInt(getValue());
