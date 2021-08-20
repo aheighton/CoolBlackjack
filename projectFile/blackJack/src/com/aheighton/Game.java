@@ -30,4 +30,5 @@ public abstract class Game
 	public abstract void deal();
 	public abstract Player getWinner();
 	public abstract String play(Player player);
+	public abstract String play(Player player, String move);
 }

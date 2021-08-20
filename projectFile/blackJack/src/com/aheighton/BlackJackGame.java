@@ -37,10 +37,19 @@ public class BlackJackGame extends Game
 			String move;
 			do
 			{
-				move = "stick"; //TODO: work out what move the CPU will make
-				if (player.getHand().getScore() < 16)
+				move = "stick";
+
+				if (player.isDealer())
 				{
-					move = "hit";
+					move = player.getHand().getScore() < 16? "hit" : "stick";
+				}
+				else
+				{
+					//TODO: work out what move the CPU will make
+					if (player.getHand().getScore() < 16)
+					{
+						move = "hit";
+					}
 				}
 				output.append(play(player, move));
 
@@ -48,20 +57,31 @@ public class BlackJackGame extends Game
 
 			 } while ((player.getHand().getScore() <= 21) && move.equals("hit"));
 		}
+		else
+		{
+			output.append(player.getName()).append(" has ").append(player.getHand().toString());
+
+			output.append(", a score of ").append(player.getHand().getScore()).append(".");
+
+			output.append("\nHit or Stick?");
+		}
 		return output.toString();
 	}
 
+	@Override
 	public String play(Player player, String move)
 	{
 		String output =  "";
 
-		if (player.isDealer())
+		if (player.isCPU())
 		{
-			output += "Dealer ";
+			if (player.isDealer())
+			{
+				output += "Dealer ";
+			}
+			output += player.getName() + " has " + player.getHand().toString() +
+					", a score of " + player.getHand().getScore() + ". " + (move.equals("hit") ? "Hit. \n" : "Stick.");
 		}
-
-		output += player.getName() + " has " + player.getHand().toString() +
-				", a score of " + player.getHand().getScore() +	". " + (move.equals("hit") ? "Hit. \n" : "Stick.");
 
 		if (move.equals("hit"))
 		{

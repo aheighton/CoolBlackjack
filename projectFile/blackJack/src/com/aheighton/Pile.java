@@ -43,7 +43,7 @@ public abstract class Pile
 
 		for (Card card : getContents())
 		{
-			output.append("[").append(card.toString()).append("]");
+			output.append(card.toString());
 		}
 
 		return output.toString();

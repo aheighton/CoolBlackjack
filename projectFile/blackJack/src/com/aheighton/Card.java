@@ -4,6 +4,10 @@ import static java.lang.Integer.parseInt;
 
 public class Card
 {
+	public static final String ANSI_RESET = "\u001B[0m";
+	public static final String ANSI_BLACK = "\u001B[30m";
+	public static final String ANSI_RED = "\u001B[31m";
+
 	private String value;
 	private char suit;
 
@@ -58,6 +62,14 @@ public class Card
 	{
 		StringBuilder output = new StringBuilder();
 
+		if (getColour() == 'R')
+		{
+			output.append(ANSI_RED + "[");
+		} else
+		{
+			output.append(ANSI_BLACK + "[");
+		}
+
 		if (getValue().equals("1"))
 		{
 			output.append("A");
@@ -74,6 +86,8 @@ public class Card
 			case 'S' -> output.append("♠");
 			case 'D' -> output.append("♦");
 		}
+
+		output.append("]"+ANSI_RESET);
 
 		return output.toString();
 	}
