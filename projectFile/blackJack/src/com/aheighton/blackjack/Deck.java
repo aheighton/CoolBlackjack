@@ -1,4 +1,4 @@
-package com.aheighton;
+package com.aheighton.blackjack;
 
 import java.util.*;
 import java.lang.Math;

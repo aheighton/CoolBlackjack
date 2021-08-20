@@ -1,4 +1,4 @@
-package com.aheighton;
+package com.aheighton.blackjack;
 
 import java.util.*;
 
@@ -11,21 +11,11 @@ public class BlackJackGame extends Game
 		getDeck().shuffle();
 	}
 
-	public BlackJackGame(List<Player> players, boolean shuffle)
-	{
-		setPlayers(players);
-		setDeck(new Deck());
-		if (shuffle) getDeck().shuffle();
-	}
-
 	@Override
 	public void deal()
 	{
-		for (Player player: getPlayers())
-		{
-			play(player,"hit");
-			play(player,"hit");
-		}
+		for (Player player: getPlayers()) play(player,"hit");
+		for (Player player: getPlayers()) play(player, "hit");
 	}
 	
 	public String play(Player player)

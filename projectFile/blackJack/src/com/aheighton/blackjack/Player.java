@@ -1,4 +1,4 @@
-package com.aheighton;
+package com.aheighton.blackjack;
 
 public abstract class Player
 {

@@ -1,4 +1,4 @@
-package com.aheighton;
+package com.aheighton.blackjack;
 
 import java.util.*;
 
@@ -7,13 +7,17 @@ public class DeckRun
 	public static void main(String[] args)
 	{
 		runGame();
+		runGame();
+		runGame();
 	}
 	public static void runGame()
 	{
 		List<Player> players = new LinkedList<>();
 		Player player = new BlackJackPlayer("Player",false,false);
-		Player dealer = new BlackJackPlayer("CPU",true,true);
+		Player cpu = new BlackJackPlayer("CPU1", true, false);
+		Player dealer = new BlackJackPlayer("CPU2",true,true);
 		players.add(player);
+		players.add(cpu);
 		players.add(dealer);
 
 
@@ -33,8 +37,9 @@ public class DeckRun
 
 
 		System.out.println(game.play(players.get(1)));
+		System.out.println(game.play(players.get(2)));
 
-		System.out.println(game.getWinner().getName());
+		System.out.println(game.getWinner().getName() + " wins!");
 
 	}
 }
