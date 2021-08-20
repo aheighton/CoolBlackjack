@@ -4,29 +4,29 @@ import java.util.List;
 
 public abstract class Pile
 {
-	List<Card> contents;
+	private List<Card> contents;
 
-	void addCard(Card card)
+	public void addCard(Card card)
 	{
 		contents.add(card);
 	}
 
-	Card removeCard()
+	public Card removeCard()
 	{
 		return contents.remove(contents.size()-1);
 	}
 
-	void removeCard(Card card)
+	public void removeCard(Card card)
 	{
 		contents.remove(card);
 	}
 
-	Card removeCard(int index)
+	public Card removeCard(int index)
 	{
 		return contents.remove(index);
 	}
 
-	void addAll()
+	public void addAll()
 	{
 		for (char suit: new char[]{'C', 'H', 'S', 'D'})
 		{
