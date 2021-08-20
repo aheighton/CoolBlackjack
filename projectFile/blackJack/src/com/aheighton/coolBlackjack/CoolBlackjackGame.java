@@ -30,8 +30,11 @@ public class CoolBlackjackGame extends BlackJackGame
 			do
 			{
 				move = "stick";
-
-				if (player.isDealer())
+				
+				if (!player.getAbility().equals(""))
+				{
+					move = "cheat";
+				} else if (player.isDealer())
 				{
 					move = player.getHand().getScore() < 16? "hit" : "stick";
 				}
@@ -47,7 +50,7 @@ public class CoolBlackjackGame extends BlackJackGame
 
 
 
-			} while ((player.getHand().getScore() <= 21) && move.equals("hit"));
+			} while ((player.getHand().getScore() <= 21) && !move.equals("stick"));
 		}
 		else
 		{
@@ -74,7 +77,10 @@ public class CoolBlackjackGame extends BlackJackGame
 			}
 			output.append(player.getName()).append(" has ").append(player.getHand().toString());
 			output.append(", a score of ").append(player.getHand().getScore()).append(". ");
-			output.append(move.equals("hit") ? "Hit. \n" : "Stick.");
+
+			if (move.equals("stick")) output.append("Stick.");
+			else if (move.equals("hit")) output.append("Hit.\n");
+			else output.append("Cheat!\n");
 		}
 
 		if (move.equals("hit"))
@@ -84,40 +90,65 @@ public class CoolBlackjackGame extends BlackJackGame
 
 		else if (move.equals("cheat"))
 		{
-			output.append("When nobody is looking, ");
-
-			switch (player.getAbility())
+			if (player.isCPU())
 			{
-				case "Free ace" -> {
-					output.append("you sneak an ace onto the table!\n");
-					int suitNo = (int) (Math.random()*4);
-					player.hit(new Card("A", new char[]{'C', 'H', 'S', 'D'}[suitNo]));
-				}
-				case "Ditch last card" -> {
-					output.append("you slip your last card off the table!\n");
-					player.getHand().removeCard();
-
-					for (Card card: player.getHand().getContents())
-					{
-						if (card.getValue().equals("1"))
+				switch (player.getAbility())
+				{
+					case "Free ace" -> {
+						output.append(player.getName()).append(" snuck a card onto the table!\n");
+						int suitNo = (int) (Math.random()*4);
+						player.hit(new Card("A", new char[]{'C', 'H', 'S', 'D'}[suitNo]));
+					}
+					case  "Ditch last card" -> {
+						output.append(player.getName()).append(" snuck a card off the table!\n");
+						player.getHand().removeCard();
+						for (Card card: player.getHand().getContents())
 						{
-							card.setValue("A");
+							if (card.getValue().equals("1"))
+							{
+								card.setValue("A");
+							}
+						}
+
+					}
+					case "See other hands" -> output.append(player.getName()).append(" looked at everyone's hands!\n");
+				}
+			} else
+			{
+				output.append("When nobody is looking, ");
+
+				switch (player.getAbility())
+				{
+					case "Free ace" -> {
+						output.append("you sneak an ace onto the table!\n");
+						int suitNo = (int) (Math.random() * 4);
+						player.hit(new Card("A", new char[]{'C', 'H', 'S', 'D'}[suitNo]));
+					}
+					case "Ditch last card" -> {
+						output.append("you slip your last card off the table!\n");
+						player.getHand().removeCard();
+
+						for (Card card : player.getHand().getContents())
+						{
+							if (card.getValue().equals("1"))
+							{
+								card.setValue("A");
+							}
+						}
+
+					}
+					case "See other hands" -> {
+						output.append("you turn over everyone's cards!\n");
+						for (Player opponent : getPlayers())
+						{
+							output.append(opponent.getName()).append(" has ").append(opponent.getHand().toString());
+							output.append(".\n");
 						}
 					}
 
+					default -> output.append("you try and fail to cheat again!\n");
 				}
-				case "See other hands" -> {
-					output.append("you turn over everyone's cards!\n");
-					for (Player opponent : getPlayers())
-					{
-						output.append(opponent.getName()).append(" has ").append(opponent.getHand().toString());
-						output.append(".\n");
-					}
-				}
-
-				default -> output.append("you try and fail to cheat again!\n");
 			}
-
 			player.setAbility("");
 		}
 
