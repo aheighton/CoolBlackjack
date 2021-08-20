@@ -16,21 +16,11 @@ public abstract class Pile
 		return contents.remove(contents.size()-1);
 	}
 
-	public void removeCard(Card card)
-	{
-		contents.remove(card);
-	}
-
-	public Card removeCard(int index)
-	{
-		return contents.remove(index);
-	}
-
 	public void addAll()
 	{
 		for (char suit: new char[]{'C', 'H', 'S', 'D'})
 		{
-			for (String value: new String[]{"1","2","3","4","5","6","7","8","9","10","J","Q","K"})
+			for (String value: new String[]{"2","3","4","5","6","7","8","9","10","J","Q","K","A"})
 			{
 				addCard(new Card(value, suit));
 			}
@@ -45,5 +35,17 @@ public abstract class Pile
 	public void setContents(List<Card> contents)
 	{
 		this.contents = contents;
+	}
+
+	public String toString()
+	{
+		StringBuilder output = new StringBuilder();
+
+		for (Card card : getContents())
+		{
+			output.append("[").append(card.toString()).append("]");
+		}
+
+		return output.toString();
 	}
 }

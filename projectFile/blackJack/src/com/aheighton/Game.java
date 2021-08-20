@@ -28,6 +28,6 @@ public abstract class Game
 	}
 
 	public abstract void deal();
-	public abstract void play();
 	public abstract Player getWinner();
+	public abstract String play(Player player);
 }

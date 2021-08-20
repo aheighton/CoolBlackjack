@@ -14,14 +14,4 @@ public class BlackJackPlayer extends Player
 	{
 		getHand().addCard(card);
 	}
-
-	public void stick()
-	{
-
-	}
-
-	public int getScore()
-	{
-		return getHand().getScore();
-	}
 }

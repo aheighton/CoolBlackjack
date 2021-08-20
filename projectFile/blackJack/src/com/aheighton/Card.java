@@ -41,13 +41,40 @@ public class Card
 
 	public int getPoints()
 	{
-		//TODO: how to handle aces?
 		try
 		{
 			return parseInt(getValue());
 		} catch (Exception e)
 		{
+			if (getValue().equals("A"))
+			{
+				return 11;
+			}
 			return 10;
 		}
+	}
+
+	public String toString()
+	{
+		StringBuilder output = new StringBuilder();
+
+		if (getValue().equals("1"))
+		{
+			output.append("A");
+		}
+		else
+		{
+			output.append(getValue());
+		}
+
+		switch (getSuit())
+		{
+			case 'C' -> output.append("♣");
+			case 'H' -> output.append("♥");
+			case 'S' -> output.append("♠");
+			case 'D' -> output.append("♦");
+		}
+
+		return output.toString();
 	}
 }
