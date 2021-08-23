@@ -1,7 +1,10 @@
 package com.aheighton.coolBlackjack;
 
-import com.aheighton.blackjack.*;
-import java.util.*;
+import com.aheighton.blackjack.Game;
+import com.aheighton.blackjack.Player;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
 
 public class CoolGameRun
 {

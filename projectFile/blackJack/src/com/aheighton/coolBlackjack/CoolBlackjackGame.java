@@ -1,7 +1,8 @@
 package com.aheighton.coolBlackjack;
 
-import com.aheighton.blackjack.*;
-
+import com.aheighton.blackjack.BlackJackGame;
+import com.aheighton.blackjack.Card;
+import com.aheighton.blackjack.Player;
 import java.util.List;
 
 public class CoolBlackjackGame extends BlackJackGame
@@ -94,14 +95,18 @@ public class CoolBlackjackGame extends BlackJackGame
 			{
 				switch (player.getAbility())
 				{
+					//TODO: make this more robust! Having the names of cheats hardcoded is not very good for expansion
 					case "Free ace" -> {
 						output.append(player.getName()).append(" snuck a card onto the table!\n");
 						int suitNo = (int) (Math.random()*4);
 						player.hit(new Card("A", new char[]{'C', 'H', 'S', 'D'}[suitNo]));
+						//TODO: this should be a static variable.
 					}
 					case  "Ditch last card" -> {
 						output.append(player.getName()).append(" snuck a card off the table!\n");
 						player.getHand().removeCard();
+
+						//TODO: make this a method to apply on a hand. Happens often enough
 						for (Card card: player.getHand().getContents())
 						{
 							if (card.getValue().equals("1"))
@@ -154,6 +159,8 @@ public class CoolBlackjackGame extends BlackJackGame
 
 		if (player.getHand().getScore() > 21)
 		{
+
+			//TODO: this can also be a method applied on hand.
 			for (Card card: player.getHand().getContents())
 			{
 				if (card.getValue().equals("A"))

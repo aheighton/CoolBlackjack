@@ -1,11 +1,12 @@
 package com.aheighton.coolBlackjack;
 
-import com.aheighton.blackjack.*;
+import com.aheighton.blackjack.BlackJackPlayer;
 
 
 public class CoolBlackjackPlayer extends BlackJackPlayer
 {
 	public static final String[] CHEATS = {"Free ace","Ditch last card","See other hands"};
+	//TODO: expand use of cheats.
 	private String ability;
 
 	public CoolBlackjackPlayer(String name, boolean isCPU, boolean isDealer)
